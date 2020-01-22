@@ -10,7 +10,8 @@
         "react/promise": "^2.7",
         "binsoul/net-mqtt-client-react": "^0.7.1",
         "symfony/yaml": "^5.0",
-        "deployer/deployer": "^6.7"
+        "deployer/deployer": "^6.7",
+        "vlucas/phpdotenv": "^4.1"
     },
     "license": "MIT",
     "authors": [

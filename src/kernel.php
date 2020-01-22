@@ -1,5 +1,7 @@
 <?php
+
 namespace App;
+
 require 'vendor/autoload.php';
 
 use App\Entity\Measurement;

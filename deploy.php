@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'mqtt-daemon');
 
 // Project repository
-set('repository', 'git@github.com:mainstreamer/mqqttmessageprocessor.git');
+set('repository', 'git@github.com:mainstreamer/mqtt-daemon.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true); 
@@ -21,12 +21,23 @@ set('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
 // Hosts
-
-host('izeebot.top')
 //    ->set('deploy_path', '~/{{application}}');
-    ->set('deploy_path', '/var/www/mqtt-php');
+host('izeebot.top')
+    ->user('root')
+    ->set('branch', 'master')
+    ->stage('production')
+    ->set('deploy_path', '/var/www/mqtt-daemon');
 
+set('user','root');
 
+set('http_user', 'www-data');
+
+set('env', [
+    'APP_ENV' => 'prod',
+    'DSN' => getenv('DSN'),
+    'USER' => getenv('USER'),
+    'PASS' => getenv('PASS'),
+]);
 // Tasks
 
 desc('Deploy your project');
@@ -48,3 +59,7 @@ task('deploy', [
 
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
+
+
+
+
