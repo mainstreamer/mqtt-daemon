@@ -1,0 +1,22 @@
+<?php
+
+require '../vendor/autoload.php';
+
+use PhpMqtt\Client\MQTTClient;
+
+$clientId = 'test-subscriber-123';
+$server = '178.62.215.91';
+$port = '1883';
+
+$mqtt = new MQTTClient($server, $port, $clientId);
+
+try {
+    $mqtt->connect();
+    $mqtt->subscribe('westa/1/data', function ($topic, $message) {
+        echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
+    }, 0);
+    $mqtt->loop(true);
+    $mqtt->close();
+} catch (Throwable $exception) {
+    echo "ERROR! ".$exception->getMessage();
+}

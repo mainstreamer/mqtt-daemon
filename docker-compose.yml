@@ -1,0 +1,23 @@
+version: "3.6"
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    container_name: "mysql-mqtt"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "weastroot"
+      MYSQL_DATABASE: "weast"
+      MYSQL_USER: "dbuser"
+      MYSQL_PASSWORD: "weastuser"
+    networks:
+      - backend
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+networks:
+  backend:
+volumes:
+  db-data: ~

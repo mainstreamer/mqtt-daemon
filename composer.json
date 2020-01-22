@@ -1,0 +1,31 @@
+{
+    "name": "rteeom/php-mqtt",
+    "description": "app for handling messages from iot devices over mqtt",
+    "type": "project",
+    "require": {
+        "php-mqtt/client": "^0.1.0",
+        "react/event-loop": "^1.1",
+        "react/dns": "^1.2",
+        "evenement/evenement": "^3.0",
+        "react/promise": "^2.7",
+        "binsoul/net-mqtt-client-react": "^0.7.1",
+        "symfony/yaml": "^5.0",
+        "deployer/deployer": "^6.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem",
+            "email": "artem.kyiv@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
