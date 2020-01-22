@@ -15,13 +15,12 @@ use React\Socket\DnsConnector;
 use React\Socket\TcpConnector;
 
 $server = '178.62.215.91';
+
 $query = function (Measurement $measurement) {
     $manager = DatabaseManager::getManager();
     $repo = new Repository\RecordRepository();
-    $manager->query($repo->getInsertQuery(), [$measurement->temperature, $measurement->humidity, $measurement->pressure, $measurement->co2, $measurement->getCreated()]);
+    $manager->query($repo->getInsertQuery(), [$measurement->temperature, $measurement->humidity, $measurement->pressure, $measurement->co2, $measurement->getCreated(), $measurement->topic]);
 };
-
-$query(new Measurement([1,2,3,4]));
 
 // Setup client
 $loop = \React\EventLoop\Factory::create();
