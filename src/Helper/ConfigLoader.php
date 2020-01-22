@@ -7,10 +7,9 @@ class ConfigLoader
 {
     public function load(): array
     {
-        $dsn = getenv('DSN') || 'mysql:host=127.0.0.1;dbname=weast';
-        $user = getenv('USER') || 'root';
-        $pass = getenv('PASS') || 'weastroot';
+        $config = file('.env');
+        $config = array_map('trim', $config);
 
-        return [$dsn,$user,$pass];
+        return $config;
     }
 }
