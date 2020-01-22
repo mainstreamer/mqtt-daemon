@@ -63,7 +63,8 @@ $client->on('message', function (Message $message) use ($query) {
         echo ' (retained)';
     }
 
-    $measurement = new Measurement(json_decode($message->getPayload(), true));
+
+    $measurement = new Measurement(array_merge(json_decode($message->getPayload(), true), ['topic' => $message->getTopic()]));
 //    $measurement['created'] = (new DateTime())->format('Y-m-d h:i:s');
 //    var_dump($measurement);exit;
     $query($measurement);

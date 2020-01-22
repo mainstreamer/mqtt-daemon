@@ -12,13 +12,12 @@ class Measurement
     public $created;
     public $topic;
 
-
-
     public function __construct(array $values = null)
     {
         $this->humidity = $values['humidity'] ?? 0;
         $this->pressure = $values['pressure'] ?? 0;
         $this->co2 = $values['CO2'] ?? 0;
+        $this->topic = $values['topic'] ?? '-';
         $this->temperature = $values['temperature'] ?? 0;
         $this->created = new \DateTime();
     }
