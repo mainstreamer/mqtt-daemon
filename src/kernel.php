@@ -4,7 +4,6 @@ namespace App;
 
 require 'vendor/autoload.php';
 
-use Dotenv;
 use App\Entity\Measurement;
 use App\Helper\DatabaseManager;
 use BinSoul\Net\Mqtt\Client\React\ReactMqttClient;
@@ -14,9 +13,6 @@ use BinSoul\Net\Mqtt\Message;
 use BinSoul\Net\Mqtt\Subscription;
 use React\Socket\DnsConnector;
 use React\Socket\TcpConnector;
-
-
-
 
 $server = '178.62.215.91';
 $query = function (Measurement $measurement) {

@@ -38,6 +38,13 @@ set('env', [
     'USER' => getenv('USER'),
     'PASS' => getenv('PASS'),
 ]);
+
+desc('Restart PHP-FPM service');
+task('daemon:restart', function () {
+// The user must have rights for restart service
+// /etc/sudoers: username ALL=NOPASSWD:/bin/systemctl restart php-fpm.service
+    run('sudo service myserv restart');
+});
 // Tasks
 
 desc('Deploy your project');
@@ -54,6 +61,7 @@ task('deploy', [
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
+    'daemon:restart',
     'success'
 ]);
 
