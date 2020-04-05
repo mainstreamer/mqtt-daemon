@@ -30,7 +30,8 @@ class DatabaseManager
 
             return $statement->execute(array_values($params));
         } else {
-            return $this->connection->exec($statement);
+
+            return $this->connection->query($statement);
         }
     }
 }

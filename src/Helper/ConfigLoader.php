@@ -7,7 +7,9 @@ class ConfigLoader
 {
     public function load(): array
     {
-        $config = file('.env');
+        //'.env';
+        $file = __DIR__.'/../../.env';
+        $config = file($file);
         $config = array_map('trim', $config);
 
         return $config;
