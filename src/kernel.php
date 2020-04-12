@@ -62,14 +62,13 @@ $client->on('message', function (Message $message) use ($query) {
         echo ' (retained)';
     }
 
-
-    $measurement = new Measurement(array_merge(json_decode($message->getPayload(), true), ['topic' => $message->getTopic()]));
-//    $measurement['created'] = (new DateTime())->format('Y-m-d h:i:s');
-//    var_dump($measurement);exit;
-    $query($measurement);
-
-//    echo ': '.$message->getTopic().' => '.mb_strimwidth($message->getPayload(), 0, 50, '...');
-    echo " saved \n";
+    if ($messageBit = json_decode($message->getPayload(), true)) {
+        if ($message->getTopic() === 'westa/1/data') {
+            $measurement = new Measurement(array_merge($messageBit, ['topic' => $message->getTopic()]));
+            $query($measurement);
+            echo " saved \n";
+        }
+    }
 
 //    $size = memory_get_usage(true);
 //    $unit=array('b','kb','mb','gb','tb','pb');
